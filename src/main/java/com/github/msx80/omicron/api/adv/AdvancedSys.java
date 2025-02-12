@@ -2,8 +2,7 @@ package com.github.msx80.omicron.api.adv;
 
 import java.util.function.Consumer;
 
-import com.github.msx80.omicron.api.Game;
-import com.github.msx80.omicron.api.Sys;
+import com.github.msx80.omicron.api.SysImpl;
 
 
 /**
@@ -14,7 +13,7 @@ import com.github.msx80.omicron.api.Sys;
  * appropriate Classloader will be used
  *
  */
-public interface AdvancedSys extends Sys {
+public interface AdvancedSys extends SysImpl {
 
 	public interface KeyboardListener 
 	{

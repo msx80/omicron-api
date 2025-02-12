@@ -3,8 +3,8 @@ public interface Game {
 
     SysConfig sysConfig();
     
-    void init(Sys sys);
+    void init() throws Exception;
     
-    boolean loop();
+    boolean loop() throws Exception;
     
 }

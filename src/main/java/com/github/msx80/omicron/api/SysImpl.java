@@ -1,6 +1,6 @@
 package com.github.msx80.omicron.api;
 
-public interface Sys 
+public interface SysImpl 
 {
 	/**
 	 * Draws a portion of an image into the screen. The current color is applied to the image.
@@ -14,20 +14,14 @@ public interface Sys
 	 * @param rotate
 	 * @param flip
 	 */
-    public static void draw(int surfaceNum, int x, int y, int srcx, int srcy, int w, int h, int rotate, int flip)
-    {
-    	Omicron.sys().draw(surfaceNum, x, y, srcx, srcy, w, h, rotate, flip);
-    }
+    void draw(int surfaceNum, int x, int y, int srcx, int srcy, int w, int h, int rotate, int flip);
     /**
      * Create a new surface with the specified dimension. Result can be used as surfNum in all context.
      * @param w
      * @param h
      * @return
      */
-    public static int newSurface(int w, int h){
-    	return Omicron.sys().newSurface(w, h);
-    }
-    	
+    int newSurface(int w, int h);
     /**
      * Return the color of a pixel in a specific surface.
      * @param surface 0 for screen
@@ -35,9 +29,7 @@ public interface Sys
      * @param y
      * @return
      */
-    public static  int getPix(int surfaceNum, int x, int y){
-    	return Omicron.sys().getPix(surfaceNum, x, y);
-    }
+    int getPix(int surfaceNum, int x, int y);
     
     /**
      * Fill an area of a surface with an uniform color.
@@ -48,9 +40,7 @@ public interface Sys
      * @param h
      * @param color
      */
-    public static void fill(int surfaceNum, int x, int y, int w, int h, int color){
-    	Omicron.sys().fill(surfaceNum, x, y, w, h, color);
-    }
+    void fill(int surfaceNum, int x, int y, int w, int h, int color);
     
     /**
      * move the origin (0,0) by the specified offset.
@@ -58,43 +48,34 @@ public interface Sys
      * @param x
      * @param y
      */
-    public static void offset(int x, int y){
-    	Omicron.sys().offset(x, y);
-    }
+	void offset(int x, int y);
 	
 	/**
 	 * Clear the screen with a specific color
 	 * Note: alpha is ignored, it's always full alpha
 	 * @param color
 	 */
-    public static void clear(int color){
-    	Omicron.sys().clear(color);
-    }
+	void clear(int color);
 	
 	/**
 	 * Set a color for subsequent draw() calls. The color will be multiplied to the pixels being written.
 	 * Set to white full alpha for direct copy.
 	 * @param color
 	 */
-    public static void color(int color){
-    	Omicron.sys().color(color);
-    }
+	void color(int color);
 	
 	/**
 	 * Return current frame per second.
 	 * @return
 	 */
-    public static int fps(){
-    	return Omicron.sys().fps();
-    }
+	int fps();
+	
 	/**
 	 * Get a value from persistent memory.
 	 * @param key
 	 * @return
 	 */
-    public static String mem(String key){
-    	return Omicron.sys().mem(key);
-    }
+	String mem(String key);
 	
 	/**
 	 * Write a value to persistent memory. It will be available on the next run of the game.
@@ -102,27 +83,21 @@ public interface Sys
 	 * @param key
 	 * @param value
 	 */
-    public static void mem(String key, String value){
-    	Omicron.sys.mem(key, value);
-    }
+	void mem(String key, String value);
 	
 	/**
 	 * Return the state of the pointers (ie, mouse or touch devices).
 	 * At least one pointer is granted to be returned.
 	 * @return
 	 */
-    public static Pointer[] pointers(){
-    	return Omicron.sys().pointers();
-    }
-    
+	Pointer[] pointers();
+	
 	/**
 	 * Return the state of all available controllers.
 	 * Firse one is the keyboard, then all gamepads/joysticks.
 	 * @return
 	 */
-    public static Controller[] controllers(){
-    	return Omicron.sys().controllers();
-    }
+	Controller[] controllers();
 	
 	/**
 	 * Play a sound
@@ -130,18 +105,14 @@ public interface Sys
 	 * @param volume
 	 * @param pitch
 	 */
-    public static void sound(int soundNum, float volume, float pitch){
-    	Omicron.sys().sound(soundNum, volume, pitch);
-    }
+	void sound(int soundNum, float volume, float pitch);
 	
 	/**
 	 * Load a binary file into a byte array. Files are called file<num>.bin
 	 * @param fileNum
 	 * @return
 	 */
-    public static byte[] binfile(int fileNum){
-    	return Omicron.sys().binfile(fileNum);
-    }
+	byte[] binfile(int fileNum);
 		
 	/**
 	 * Play a music. Music files are called music<num>.mp3
@@ -149,16 +120,12 @@ public interface Sys
 	 * @param volume
 	 * @param loop
 	 */
-    public static void music(int musicNum, float volume, boolean loop){
-    	Omicron.sys().music(musicNum, volume, loop);
-    }
+	void music(int musicNum, float volume, boolean loop);
 	
 	/**
 	 * Stop currently playing music 
 	 */
-    public static void stopMusic(){
-    	Omicron.sys().stopMusic();
-    }
+	void stopMusic();
 	
 	/**
 	 * Execute some customized hardware related command
@@ -167,9 +134,8 @@ public interface Sys
 	 * @param param
 	 * @return
 	 */
-    public static Object hardware(String module, String command, Object param){
-    	return Omicron.sys().hardware(module, command, param);
-    }
+	Object hardware(String module, String command, Object param);
+	
 	/**
 	 * Set the current clip of the screen, that is the area that will be drawn onto.
 	 * Anything drawn outside of the clip area will not be drawn.
@@ -179,24 +145,18 @@ public interface Sys
 	 * @param w the rectangle area to clip
 	 * @param h the rectangle area to clip
 	 */
-    public static void clip(int x, int y, int w, int h){
-    	Omicron.sys().clip(x, y, w, h);
-    }
+	void clip(int x, int y, int w, int h);
 	
 	/**
 	 * Get the current time millis
 	 * @return System.currentTimeMillis()
 	 */
-    public static long millis(){
-    	return Omicron.sys().millis();
-    }
+	long millis();
 	
 	/**
 	 * Log a string, for debugging purpouses
 	 * @param s
 	 */
-    public static void trace(String s){
-    	Omicron.sys().trace(s);
-    }
+	void trace(String s);
 	
 }
